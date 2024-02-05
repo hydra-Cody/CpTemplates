@@ -42,8 +42,6 @@ struct DSU {
   weight dsu
 */
 
-
-
 //-----------------------------------------------------------------------
 
 /*
@@ -86,13 +84,7 @@ void dsu(int u, int p, bool keep) {
   if (keep == 0) add(u, p, -1);
 }
 
-int32_t main() {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  int t;
-  cin >> t;
-  return 0;
-}
+
 
 
 //----------------------------------------------------------------------------
@@ -100,14 +92,14 @@ int32_t main() {
   DSU with ROllbacks
 */
 
-const int N = 2e5 + 9;
+// const int N = 2e5 + 9;
 
-struct DSU {
+struct DSU1 {
   vector<int> par, sz, w;
   vector<array<int, 3>> op;
   bool flag;
-  DSU() {}
-  DSU(int n) {
+  DSU1() {}
+  DSU1(int n) {
     par.resize(n + 1);
     sz.resize(n + 1);
     w.resize(n + 1);
@@ -172,10 +164,10 @@ struct update {
   }
 };
 struct DSUQueue {
-  DSU D;
+  DSU1 D;
   vector<update> S;
   DSUQueue(int n) {
-    D = DSU(n);
+    D = DSU1(n);
   }
   void push(update u) {
     D.merge(u.x, u.y);
@@ -209,7 +201,7 @@ struct DSUQueue {
   }
 };
 int u[N], v[N], a[N];
-int32_t main() {
+void  chal() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   int n, m, q; cin >> n >> m >> q;
@@ -239,12 +231,13 @@ int32_t main() {
       cout << "YES\n";
     }
   }
-  return 0;
 }
-// https://codeforces.com/contest/1386/problem/C
-// https://codeforces.com/blog/entry/83467
 
 //-----------------------------------------------------------------------------------
 /*
   Small to large merging techinq
 */
+
+
+//-------------------------------------------------------------------------------------
+/*dsu with rank with only rank comp*/
