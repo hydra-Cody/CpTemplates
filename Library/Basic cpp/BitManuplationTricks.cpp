@@ -1,9 +1,48 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long 
+#define ll long long
+//---------------------------------------------------------------
+/*Find first possition where bi differ*/
+ll find(ll x){
+  ll t=0;
+  while(x){
+    x=x>>1;
+    t++;
+  }
+  return t;
+}
+//------------------------------------------------------------------
+/*
+    iterate through all bitmasks and 
+    for each mask,iterate through all of its submasks in 3^n
+*/
+void allsubmask(ll n){
+    for (ll m=0; m<(1<<n); ++m){
+        for (ll s=m; s; s=(s-1)&m){
 
+        }
+    }
+}
 
+/* iterate through all the submasks of a mask(m=(1ll<<n)) in 3^n*/
+void submask(ll m){
+    for( ll x=m; x>0; x = (x-1) & m){
+        cout<<x<<endl;
+    }
+    cout<<0<<endl; 
+}
+//--------------------------------------------------------------------
+/*Check whether y is submask of x*/
+bool submask(ll x,ll y){return (x & y == x); }
+//-------------------------------------------------------------------------
+/* Return the lsb bit */
+ll lsb(ll n){ return  n & (-n); }
+ll unsetlsb(ll n){return n = n - ( n &(-n)  );
+    // return n = n ^ ( n &(-n)  );
+}
 //-----------------------------------------------------------------------------------
+#define zerobits(x) __builtin_ctzll(x)
+#define set_bits __builtin_popcountll
 /*Basic Build in fuctions  in cpp*/
 // __builtin_ffsll(x); //return postion first set bit 1 + index
 // __builtin_clz(x); // number of leading 0-bits of x which starts from most significant bit position.
@@ -34,12 +73,6 @@ ll countSetBits(ll n){
 /* Change the ith bit  0->1 or 1->0*/
 ll toggle(ll n,ll x){ return n = n ^ (1<<x); }
 
-//-------------------------------------------------------------------------
-/* Return the lsb bit */
-ll lsb(ll n){ return  n & (-n); }
-ll unsetlsb(ll n){return n = n - ( n &(-n)  );
-    // return n = n ^ ( n &(-n)  );
-}
 //---------------------------------------------------------------------------------
 /* Check Whether a number is pow of 2*/
 bool isPowerOfTwo(ll x){ return x && (!(x & (x - 1))); }
@@ -52,28 +85,7 @@ void clearRangeItoJBits(ll &n, ll i, ll j) {
     ll mask=ma|mb;
     n=n&mask;
 }
-//------------------------------------------------------------------
-/*number n, iterate through all the submasks of n */
-void submask(ll n){
-    for( ll x=n; x>0; x = (x-1) & n){
-        cout<<x<<endl;
-    }
-    cout<<0<<endl; 
-}
-//-------------------------------------------------------
-/*set of n elements, iterate through all the subsets (submasks) of all the subsets (submasks) of size n*/
-void subsubmask(ll n){
-    for( int i=0; i< (1<<n) ; i++){
-        for( int x=i; x>0; x = (x-1) & i){
-            cout<<x<<endl;
-        }
-        cout<<0<<'\n'; // treat 0 separately
-    }
-}
 
-//--------------------------------------------------------------------
-/*Check whether y is submask of x*/
-bool submask(ll x,ll y){return (x & y == x); }
 //---------------------------------------------------------------------------------
 ll computeXOR1ton(ll n){
     if (n % 4 == 0)

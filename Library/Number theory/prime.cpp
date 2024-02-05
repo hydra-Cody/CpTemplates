@@ -2,11 +2,11 @@
 using namespace std;
 #define ll long long
 #define MOD 1000000007
+
 //---------------------------------------------------------------------------------
 /*seive with lookup table nlog(log(n))*/
 const ll max_N=1e5+10;
 vector<bool> prime(max_N, true);
-vector<ll> aa;
 void primesieve(){
     prime[0] = false;
     prime[1] = false;
@@ -20,11 +20,40 @@ void primesieve(){
             }
         }
     }
+}
+vector<ll> aa;
+void primesieve2(){
     for(ll i=2;i<max_N;i++){
       if(prime[i]){
         aa.push_back(i);
       }
     }
+}
+
+
+
+
+
+
+
+
+
+// *********************Less Used*******************************************
+
+//--------------------------------------------------------------------------
+/*gcdextende  for eqation of type ax+by=gcd(a,b) with Bezout coefficients(x,y)=(x*+k*(b/gcd(a,b)),y*–k*(a/gcd(a,b)))*/ 
+ll gcdExtended(ll a, ll b, ll *x, ll *y){
+    if (a == 0)
+    {
+        *x = 0;
+        *y = 1;
+        return b;
+    }
+    ll x1, y1;
+    ll gcd = gcdExtended(b%a, a, &x1, &y1);
+    *x = y1 - (b/a) * x1;
+    *y = x1;
+    return gcd;
 }
 
 //----------------------------------------------------------------------------------------
@@ -114,4 +143,17 @@ void sieve (int n) {
         for (int j = 2; i * j < n; ++j)
             is_composite[i * j] = true;
     }
+}
+//-----------------------------------------------------------
+/*gcd-lcm log(min(a,b))*/
+ll gcd(ll a, ll b){
+    if (b == 0){
+        return a;
+    }
+    else{
+        return gcd(b, a % b);
+    }
+}
+ll lcm(ll a, ll b){
+    return (a / gcd(a, b)) * b;
 }

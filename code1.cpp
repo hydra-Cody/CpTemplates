@@ -1,6 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-// #define endl "\n"
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+#define LagaKar ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 #define pb push_back
 #define pf push_front
 #define pob pop_back
@@ -8,120 +11,116 @@ using namespace std;
 #define mp make_pair
 #define fi first
 #define se second
-#define set_bits __builtin_popcountll
+#define lb lower_bound
+#define ub upper_bound
+#define ook order_of_key   //number of elements less than k
+#define fbo find_by_order  //k th element
+#define nline "\n"
+#define YES cout<<"YES"<<nline
+#define NO cout<<"NO"<<nline
+#define Yes cout<<"Yes"<<nline
+#define No cout<<"No"<<nline
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #define precise(ans)  cout<<fixed<<setprecision(15)<<ans
 #define fo(i,n) for(ll i=0;i<n;i++)
 #define Fo(i,k,n) for(ll i=k;k<n?i<n:i>n;k<n?i+=1:i-=1)
-#define tr(it, a) for(auto it = a.begin(); it != a.end(); it++)
-#define sz(x) ((ll)(x).size())
-#define all(x) x.begin(), x.end()
-#define PI 3.1415926535897932384626
-#define MOD 1000000007
-#define MOD1 998244353
-typedef long long ll; typedef unsigned long long ull; typedef long double lld; typedef pair<ll, ll>  pii; typedef pair<ll, ll>    pl; typedef vector<ll> vi; typedef vector<vi> vvi; typedef vector<vvi>    vvvi; typedef vector<ll>  vl; typedef vector<vl>  vvl; typedef vector<pii> vpii; typedef vector<pl>  vpl; template <typename T> using prq_mx  = priority_queue<T>; template <typename T> using prq_mn = priority_queue<T, vector<T>, greater<T>>;
-const double eps = 1e-9; const ll INF = (ll) 1e9; const ll inf64 = 2e18; const ll INF64 = 9e18;
-#ifndef ONLINE_JUDGE
-#define debug(x) cerr << #x <<" "; _prll(x); cerr << endl;
+#define Tr(it, a) for(auto it = a.begin(); it != a.end(); it++)
+#define Sz(x) ((ll)(x).size())
+#define All(x) x.begin(), x.end()
+#define Allr(x) x.rbegin(), x.rend()
+#define MAX(x) *max_element(All(x))
+#define MIN(x) *min_element(All(x))
+#define SUM(x) accumulate(All(x), 0LL)
+#define CNT(x) __builtin_popcountll(x)
+//##################################################################################################################
+typedef long long ll; typedef unsigned long long ull; typedef long double lld;
+template <typename T> using o_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+template <typename T, typename R> using o_map = tree<T, R, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+typedef pair<ll, ll>  pl;   typedef vector<ll>  vl;typedef vector<vl>  vvl; 
+typedef vector<pl>  vpl;    template <typename T> using prq_mx  = priority_queue<T>; 
+template <typename T> using prq_mn = priority_queue<T, vector<T>, greater<T>>;
+//********************************************************************************************************************
+#ifdef hydracody
+    #include <C:\Users\Anurag Dwivedi\Desktop\cpc\debug.h>
 #else
 #define debug(x)
 #endif
-void _prll(ll t) {cerr << t;} void _print(ll t) {cerr << t;} void _prll(string t) {cerr << t;} void _prll(char t) {cerr << t;} void _prll(lld t) {cerr << t;} void _prll(double t) {cerr << t;} void _prll(ull t) {cerr << t;} template <class T, class V> void _prll(pair <T, V> p); template <class T> void _prll(vector <T> v); template <class T> void _prll(set <T> v); template <class T, class V> void _prll(map <T, V> v); template <class T> void _prll(multiset <T> v); template <class T, class V> void _prll(pair <T, V> p) {cerr << "{"; _prll(p.fi); cerr << ","; _prll(p.se); cerr << "}";} template <class T> void _prll(vector <T> v) {cerr << "[ "; for (T i : v) {_prll(i); cerr << " ";} cerr << "]";} template <class T> void _prll(set <T> v) {cerr << "[ "; for (T i : v) {_prll(i); cerr << " ";} cerr << "]";} template <class T> void _prll(multiset <T> v) {cerr << "[ "; for (T i : v) {_prll(i); cerr << " ";} cerr << "]";} template <class T, class V> void _prll(map <T, V> v) {cerr << "[ "; for (auto i : v) {_prll(i); cerr << " ";} cerr << "]";}
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ll n,m;
-vl aa;
-vector<set<ll>> g;
-vl size;
-vl val;
-vl par;
-vector<set<pl>> size2;
-ll dfs(ll s,ll f){
-  size[s]=1;
-  val[s]=aa[s];
-  par[s]=f;
-  for(auto ch:g[s]){
-    if(ch==f)continue;
-    size[s]+=dfs(ch,s);
-    val[s]+=val[ch];
-    size2[s].insert({size[ch],ch});
-  }
-  return size[s];
-}
+//------------------------------------------------------------------------------------------------------------
+const double eps=1e-9;const ll INF=(ll)1e9;const ll inf64=2e18;const ll INF64=9e18;
+#define PI 3.1415926535897932384626
+#define Mod 1000000007
+#define Mod1 998244353
+#define Mod2 1000000009
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
+ll lcm(ll a, ll b){return (a / gcd(a, b)) * b;}
+ll power(ll x,ll y, ll p){if(y==0)return 1;ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
+ll pinv(ll a, ll m){ return power(a, m - 2, m); }
+ ll logceil(ll x){ll s=0;while(x>0){s++;x=x/2;}return s;}
+ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
+ll mod_mul(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a * b) % m) + m) % m;}
+ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
+ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, pinv(b, m), m) + m) % m;}  //only for prime m
+ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
+ll getRandomNumber(ll l, ll r) {return uniform_int_distribution<ll>(l, r)(rng);} 
+void starter(ll t) {cout << "Case #" << t << ": ";}
+void starter1(ll t) {cerr << "Case #" << t << ": ";}
+void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begin(), vs.end()) - vs.begin());}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 
 void  chal(){
-  cin>>n>>m;
-  g.resize(n+1);
-  aa.resize(n+1);
-  size.resize(n+1);
-  size2.resize(n+1);
-  par.resize(n+1);
-  val.resize(n+1);
-  Fo(i,1,n+1){
-    cin>>aa[i];
-  }
-  // debug(aa);
-  fo(i,n-1){
-    ll u,v;
-    cin>>u>>v;
-    g[u].insert(v);
-    g[v].insert(u);
-  }
-  dfs(1,-1);
-  // debug(val);
-  // debug(size);
-  // debug(size2);
-  fo(i,m){
-    ll x,y;
-    cin>>x>>y;
-    if(x==1){
-      // cout<<y<<" ";
-      cout<<val[y]<<endl;
-    }else{
-      if(g[y].size()<=1|| par[y]==-1){
-        // cout<<-1<<endl;
-        continue;
-      }
-      auto it=size2[y].begin();
-      ll x=it->se;
-      ll f=par[y];
-      // cout<<x<<": "<<endl;
-      // cout<<y<<" "<<x<<" "<<val[y]<<" "<<val[x]<<" ";
-      g[f].erase(y);
-      size2[f].erase({size[y],y});
-
-      size[y]-=size[x];
-      val[y]-=val[x];
-      size[x]+=size[y];
-      val[x]+=val[y];
-      
-      g[y].erase(x);
-      size2[y].erase(it);        
-      g[f].insert(x);
-      size2[f].insert({size[x],x});
-      par[x]=f;
-      par[y]=x;
-      // cout<<val[y]<<" "<<val[x]<<endl;
-    }
-  }
+  
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 }
-
-
-
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+ 
+ 
+ 
+ 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int32_t main() {
-  ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0); srand(chrono::high_resolution_clock::now().time_since_epoch().count());
-#ifndef ONLINE_JUDGE
-  freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout); freopen("Error.txt", "w", stderr);
+  LagaKar;
+#ifdef hydracody
+  freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout); freopen("error.txt", "w", stderr);
 #endif
   ll  t; t = 1;
-  // cin >> t;
+  // factor_sieve();
+  cin>>t;
   for (ll i = 1; i <= t; i++) {
+    // starter(i);
     chal();
-  } return 0;
+  } 
+  return 0;
 }
+/*
+cmd->g++ code1.cpp  ./a.exe  
+*/

@@ -4,6 +4,10 @@ using namespace std;
 
 
 //----------------------------------------------------------------------
+/*
+    "Disclaimer"-> Always use pointer trie as there can be memory tight in questions
+*/
+/* Binary trie -> Tree + bitmask */
 struct node{
     int val,cnt;
     node* child[2];
@@ -65,4 +69,40 @@ struct tries{
  
         return ans;
     }
+};
+
+
+//-----------------------------------------------------------------
+/*
+    String Trie
+*/
+struct Trie {
+  Trie* children[26];
+  ll cnt = 0;
+  Trie() {
+      for(ll i=0;i<26;i++)children[i]=NULL;
+  }
+  
+  void insert(string word) {
+      Trie* cur = this;
+      cur->cnt++;
+      for(auto i:word){
+          if(!cur->children[i-'a']) cur->children[i-'a'] = new Trie();
+          cur = cur->children[i-'a'];
+          cur->cnt++;
+      }
+  }
+  
+  ll search(string word) {
+      ll len = word.size();
+      Trie* cur = this;
+      ll res = 0;
+      for(ll i=0;i<len;i++){
+          char c = word[i];
+          if(!cur->children[c-'a'])break;
+          cur = cur->children[c-'a'];
+          res += cur->cnt;
+      }
+      return res;
+  }
 };
