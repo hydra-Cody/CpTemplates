@@ -48,9 +48,9 @@ template <typename T> using prq_mn = priority_queue<T, vector<T>, greater<T>>;
 //------------------------------------------------------------------------------------------------------------
 const double eps=1e-9;const ll INF=(ll)1e9;const ll inf64=2e18;const ll INF64=9e18;
 #define PI 3.1415926535897932384626
-#define Mod 1000000007
+// #define Mod1 1000000007
 #define Mod1 998244353
-#define Mod2 1000000009
+#define Mod12 1000000009
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
@@ -74,17 +74,9 @@ void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begi
 
 
 
+
 void  chal(){
   
-
-
-
-
-
-
-
-
-
 
 
 
@@ -113,8 +105,7 @@ int32_t main() {
   freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout); freopen("error.txt", "w", stderr);
 #endif
   ll  t; t = 1;
-  // factor_sieve();
-  cin>>t;
+  // cin>>t;
   for (ll i = 1; i <= t; i++) {
     // starter(i);
     chal();
