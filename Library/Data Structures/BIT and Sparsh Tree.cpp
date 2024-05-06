@@ -55,16 +55,15 @@ useful for static arrays only. If you need to update values,
 // 1d sparse table
 const ll MX= 1e5+100,MAXK=25;
 vector<vector<ll>> spt(MX,vector<ll>(MAXK+1));
-vector<ll> aa(MX);
-vector<ll> lg(MX);
-void logcal(){
-  lg[1]=0;
-  for(ll i=2; i<= MX ; i++)
-  {
-    lg[i] = lg[i/2] + 1;
-  }
-}
-void buildST(ll n){
+// vector<ll> lg(MX);
+// void logcal(){
+//   lg[1]=0;
+//   for(ll i=2; i<= MX ; i++)
+//   {
+//     lg[i] = lg[i/2] + 1;
+//   }
+// }
+void buildST(ll n,vector<ll>& aa){
   for(ll i=0; i<n; i++){
     spt[i][0] = aa[i];
   }
@@ -77,8 +76,8 @@ void buildST(ll n){
 }
 ll minquery(ll l, ll r){
   if(l>r) return INT_MAX;
-  ll j = (ll)lg[r - l + 1];
-  // ll j = 31 - __builtin_clz(r - l+1);
+  // ll j = (ll)lg[r - l + 1];
+  ll j = 31 - __builtin_clz(r - l+1);
   return min (spt[l][j], spt[r - (1 << j) + 1][j]);
 }
 ll sumQuery(ll L,ll R){

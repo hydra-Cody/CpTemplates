@@ -15,7 +15,7 @@ using namespace __gnu_pbds;
 #define ub upper_bound
 #define ook order_of_key   //number of elements less than k
 #define fbo find_by_order  //k th element
-#define nline "\n"
+#define nline endl
 #define YES cout<<"YES"<<nline
 #define NO cout<<"NO"<<nline
 #define Yes cout<<"Yes"<<nline
@@ -34,23 +34,25 @@ using namespace __gnu_pbds;
 #define CNT(x) __builtin_popcountll(x)
 //##################################################################################################################
 typedef long long ll; typedef unsigned long long ull; typedef long double lld;
-template <typename T> using o_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-template <typename T, typename R> using o_map = tree<T, R, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 typedef pair<ll, ll>  pl;   typedef vector<ll>  vl;typedef vector<vl>  vvl; 
 typedef vector<pl>  vpl;    template <typename T> using prq_mx  = priority_queue<T>; 
 template <typename T> using prq_mn = priority_queue<T, vector<T>, greater<T>>;
+//------------------------------------------------------------------------------------------------------------
+template <typename T> using o_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+template <typename T, typename R> using o_map = tree<T, R, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+template <typename T> using o_multiset = tree<T,null_type,less_equal<T>,rb_tree_tag,tree_order_statistics_node_update>;
 //********************************************************************************************************************
 #ifdef hydracody
-    #include <C:\Users\Anurag Dwivedi\Desktop\cpc\debug.h>
+    #include </home/anurag/Desktop/cpc/debug.h>
 #else
 #define debug(x)
 #endif
 //------------------------------------------------------------------------------------------------------------
 const double eps=1e-9;const ll INF=(ll)1e9;const ll inf64=2e18;const ll INF64=9e18;
 #define PI 3.1415926535897932384626
-// #define Mod1 1000000007
-#define Mod1 998244353
-#define Mod12 1000000009
+#define MOD 1000000007
+#define MOD1 998244353
+#define MOD2 1000000009
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
@@ -68,9 +70,7 @@ void starter(ll t) {cout << "Case #" << t << ": ";}
 void starter1(ll t) {cerr << "Case #" << t << ": ";}
 void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begin(), vs.end()) - vs.begin());}
 /////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
+// **Stay Strong,Believe in YOURSELF,Never give UP
 
 
 
@@ -91,8 +91,21 @@ void  chal(){
 
 
 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 }
+
  
  
  
@@ -105,7 +118,7 @@ int32_t main() {
   freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout); freopen("error.txt", "w", stderr);
 #endif
   ll  t; t = 1;
-  // cin>>t;
+  cin>>t;
   for (ll i = 1; i <= t; i++) {
     // starter(i);
     chal();
@@ -113,5 +126,5 @@ int32_t main() {
   return 0;
 }
 /*
-cmd->g++ code1.cpp  ./a.exe  
+cmd->g++ code1.cpp  ./a.out
 */
