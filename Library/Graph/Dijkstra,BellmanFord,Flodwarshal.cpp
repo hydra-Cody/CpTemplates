@@ -45,6 +45,7 @@ void dijkstra(ll s)
   ->used for both directed and undirected graphs
   ->with no negatice weight cycle 
   ->in O(nm)
+  ->effective for dense graphs (many edges),
 */
 const ll INF = 2e9;
 // const ll N = 3e5 + 9;
@@ -115,5 +116,4 @@ void floyd_warshall() {
         }
     }
 }
-
 

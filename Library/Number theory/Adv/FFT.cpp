@@ -53,27 +53,3 @@ vector<long long> multiply(vector<int> &a, vector<int> &b) {
   return ret;
 }
 
-long long ans[N];
-int32_t main() {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  int n, x; cin >> n >> x;
-  vector<int> a(n + 1, 0), b(n + 1, 0), c(n + 1, 0);
-  int nw = 0;
-  a[0]++; b[n]++;
-  long long z = 0;
-  for (int i = 1; i <= n; i++) {
-    int k; cin >> k;
-    nw += k < x;
-    a[nw]++; b[-nw + n]++;
-    z += c[nw] + !nw; c[nw]++;
-  }
-  auto res = multiply(a, b);
-  for (int i = n + 1; i < res.size(); i++) {
-    ans[i - n] += res[i];
-  }
-  ans[0] = z;
-  for (int i = 0; i <= n; i++) cout << ans[i] << ' ';
-  cout << '\n';
-  return 0;
-}

@@ -50,8 +50,8 @@ template <typename T> using o_multiset = tree<T,null_type,less_equal<T>,rb_tree_
 //------------------------------------------------------------------------------------------------------------
 const double eps=1e-9;const ll INF=(ll)1e9;const ll inf64=2e18;const ll INF64=9e18;
 #define PI 3.1415926535897932384626
-#define MOD 1000000007
-#define MOD1 998244353
+#define MOD 998244353
+#define MOD1 1000000007
 #define MOD2 1000000009
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
@@ -77,6 +77,7 @@ void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begi
 
 void  chal(){
   
+  
 
 
 
@@ -92,22 +93,24 @@ void  chal(){
 
 
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
  
  
 }
 
- 
- 
+
  
  
  
@@ -115,10 +118,10 @@ void  chal(){
 int32_t main() {
   LagaKar;
 #ifdef hydracody
-  freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout); freopen("error.txt", "w", stderr);
+  freopen("input.txt", "r", stdin); freopen("output1.txt", "w", stdout); freopen("error.txt", "w", stderr);
 #endif
   ll  t; t = 1;
-  cin>>t;
+  // cin>>t;
   for (ll i = 1; i <= t; i++) {
     // starter(i);
     chal();

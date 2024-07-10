@@ -32,12 +32,3 @@ ll inv(ll a, ll m)
 //------------------------------------------------------------------------------------
 /*power without mod in log(n)*/
 ll power(ll a, ll b){
-    ll x = 1;
-    while (b){
-        if (b & 1)
-            x *= a;
-        a *= a;
-        b >>= 1;
-    }
-    return x;
-}

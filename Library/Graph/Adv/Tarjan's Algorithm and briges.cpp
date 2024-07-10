@@ -8,9 +8,8 @@ using namespace std;
     Articulation points (Tarjan's Algorithm)
 */
 //Finding Articulation point in a graph in  in o(n+m)
-ll n; // number of nodes
-vector<vector<ll>> adj; // adjacency list of graph
-vector<bool> visited;
+ll n;
+vector<vector<ll>> adj;
 vector<ll> disc, low,ap;
 ll Time;
 ll dfsAP(ll u, ll p) {
