@@ -2,39 +2,102 @@
 using namespace std;
 #define ll long long 
 //-------------------------------------------------------------------------------
-/*  Detection of cycle*/
-bool cy(ll s,ll p,vector<vector<ll>>& g,vector<ll>& vis){
-	if(vis[s])return 1;
-	vis[s]=1;
-	bool ans=0;
-	for(auto ch:g[s]){
-		if(ch!=p){
-			if(vis[ch])return 1;
-			ans|=cy(ch,s,g,vis);
-		}
-	}
-	return ans;
+/*  implementation for directed graph.*/
+ll n;
+vector<vector<ll>> adj;
+vector<char> color;
+vector<ll> parent;
+ll cycle_start, cycle_end;
+bool dfs(ll v) {
+    color[v] = 1;
+    for (ll u : adj[v]) {
+        if (color[u] == 0) {
+            parent[u] = v;
+            if (dfs(u))
+                return true;
+        } else if (color[u] == 1) {
+            cycle_end = v;
+            cycle_start = u;
+            return true;
+        }
+    }
+    color[v] = 2;
+    return false;
+}
+
+void find_cycle() {
+    color.assign(n, 0);
+    parent.assign(n, -1);
+    cycle_start = -1;
+
+    for (ll v = 0; v < n; v++) {
+        if (color[v] == 0 && dfs(v))
+            break;
+    }
+
+    if (cycle_start == -1) {
+        cout << "Acyclic" << endl;
+    } else {
+        vector<ll> cycle;
+        cycle.push_back(cycle_start);
+        for (ll v = cycle_end; v != cycle_start; v = parent[v])
+            cycle.push_back(v);
+        cycle.push_back(cycle_start);
+        reverse(cycle.begin(), cycle.end());
+
+        cout << "Cycle found: ";
+        for (ll v : cycle)
+            cout << v << " ";
+        cout << endl;
+    }
 }
 //-------------------------------------------------------
-/* Print the cycle */
+/* implementation for undirected graph */
 
-void dfs(ll s,vector<ll>& g,vector<ll>& vis,
-  vector<vector<ll>>& cy,vector<ll>& inst){
-  vis[s]=1;
-  inst[s]=1;
-  ll ch=g[s];
-  if(vis[ch]==0){
-    dfs(ch,g,vis,cy,inst);
-  }else if(inst[ch]==1){
-    vector<ll> cy2;
-    cy2.push_back(s);
-    while(ch!=s){
-      cy2.push_back(ch);
-      ch=g[ch];
+ll n;
+vector<vector<ll>> adj;
+vector<bool> visited;
+vector<ll> parent;
+ll cycle_start, cycle_end;
+
+bool dfs(ll v, ll par) { // passing vertex and its parent vertex
+    visited[v] = true;
+    for (ll u : adj[v]) {
+        if(u == par) continue; // skipping edge to parent vertex
+        if (visited[u]) {
+            cycle_end = v;
+            cycle_start = u;
+            return true;
+        }
+        parent[u] = v;
+        if (dfs(u, parent[u]))
+            return true;
     }
-    cy.push_back(cy2);
-  }
-  inst[s]=2;
- 
+    return false;
 }
 
+void find_cycle() {
+    visited.assign(n, false);
+    parent.assign(n, -1);
+    cycle_start = -1;
+
+    for (ll v = 0; v < n; v++) {
+        if (!visited[v] && dfs(v, parent[v]))
+            break;
+    }
+
+    if (cycle_start == -1) {
+        cout << "Acyclic" << endl;
+    } else {
+        vector<ll> cycle;
+        cycle.push_back(cycle_start);
+        for (ll v = cycle_end; v != cycle_start; v = parent[v])
+            cycle.push_back(v);
+        cycle.push_back(cycle_start);
+
+        cout << "Cycle found: ";
+        for (ll v : cycle)
+            cout << v << " ";
+        cout << endl;
+    }
+}

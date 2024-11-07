@@ -132,6 +132,13 @@ struct Lsegtree{
 //-------------------------------------
 /*  Segment Tree    ~ work for every associative operation.(a @ b) @ c = a @ (b @ c) 
 */
+/*  
+    [i,j]
+    Segtree1 seg(n);
+    seg.build(1,0,n-1);
+    seg.update(1,0,n-1,l,val);
+    seg.query(1,0,n-1,l,r);
+*/
 struct Segtree1 {
   vector<ll> t;
   Segtree1(ll n) {
@@ -167,16 +174,15 @@ struct Segtree1 {
     return L+ R;
   }
 };
-/*  
-[i,j]
-Segtree s(n);
-s.build(1,0,n-1);
-s.update(1,0,n-1,l,val);
-s.query(1,0,n-1,l,r);
-*/
 
 //---------------------------------------------------------------------
 /*  segment tree+Lazy propagation->Range update
+*/
+/*
+    Segtree2 seg(n);
+    seg.build(a,1,0,n-1);
+    seg.query(1,0,n-1,l,r);
+    seg.update(1,0,n-1,l,r,val);  [l,r]
 */
 struct Segtree2{
     vector<ll> t, lazy, sz;
@@ -235,11 +241,5 @@ struct Segtree2{
     }
 };
 
-/*
-Segtree s(n);
-s.build(a,1,0,n-1);
-s.query(1,0,n-1,l,r);
-s.update(1,0,n-1,l,r,val);  [l,r]
-*/
 
 

@@ -1,5 +1,8 @@
 #define debug(x) cerr << #x <<" "; _prll(x); cerr << endl;
 
+void _prll(int t) {
+    cerr << t;
+} 
 void _prll(ll t) {
     cerr << t;
     } 

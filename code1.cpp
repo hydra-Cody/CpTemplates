@@ -14,7 +14,7 @@ using namespace __gnu_pbds;
 #define lb lower_bound
 #define ub upper_bound
 #define ook order_of_key   //number of elements less than k
-#define fbo find_by_order  //k th element
+#define fbo find_by_order  //k th element (0 index)
 #define nline endl
 #define YES cout<<"YES"<<nline
 #define NO cout<<"NO"<<nline
@@ -75,9 +75,15 @@ void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begi
 
 
 
+
+
+
 void  chal(){
+  ll n,d;
+  cin>>n>>d;
+  vl aa(n);
+  fo(i,n)cin>>aa[i];
   
-  
 
 
 
@@ -106,10 +112,11 @@ void  chal(){
 
 
 
- 
- 
+
+
+
+
 }
-
 
  
  
@@ -121,7 +128,7 @@ int32_t main() {
   freopen("input.txt", "r", stdin); freopen("output1.txt", "w", stdout); freopen("error.txt", "w", stderr);
 #endif
   ll  t; t = 1;
-  // cin>>t;
+  cin>>t;
   for (ll i = 1; i <= t; i++) {
     // starter(i);
     chal();

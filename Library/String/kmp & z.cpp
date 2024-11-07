@@ -5,7 +5,7 @@ using namespace std;
 //----------------------------------------------------------------------------
 /* Give the longest common prefix suffix "ending at i" in O(n)
 */
-void kmp(string p, string s) {
+vector<ll> kmp(string p, string s) {
   ll n = p.length();
   vector<ll> lps(n);
   lps[0] = 0;
@@ -19,23 +19,7 @@ void kmp(string p, string s) {
     }
     lps[i] = j;
   }
-  ll m = s.length();
-  ll i = 0, j = 0;
-  while (i < m){
-    if (s[i] == p[j])
-    {
-      i++;
-      j++;
-      if (j == n){
-        cout << "Pattern found at " << i - j; // 1-based index
-      }
-    }else if (i < m && s[i] != p[j] ) {
-      if (j > 0)
-        j = lps[j - 1];
-      else
-        i++;
-    }
-  }
+  return lps;
 
 }
 
