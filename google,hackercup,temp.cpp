@@ -75,60 +75,62 @@ void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begi
 
 
 
-ll dek(ll& mid,vvl& aa){
-    cout<<mid<<nline;
-    ll ans=0,n=Sz(aa),m=Sz(aa[0]);
-    map<ll,ll> bb;
-    for(ll i=0;i<=min(n-1,mid-1);i++){
-    for(ll j=0;j<=min(m-1,mid-1);j++)bb[aa[i][j]]++;
-    }
-    for(ll i=0;i<Sz(aa);i++){
-        if(i+mid<Sz(aa)){
-            for(ll j=0;j<min(m,mid-1);j++){
-                bb[aa[i+mid][j]]++;
-            }
-        }
-        for(ll j=0;j<Sz(aa[0]);j++){
-            if(j+mid<Sz(aa[0]))for(ll k=0;k<min(n,i+mid+1);k++)bb[aa[k][j+mid]]++;
-            if((j-mid-1)>=0)for(ll k=0;k<min(n,i+mid+1);k++)bb[aa[k][j-mid-1]]--;
-            ll r1 = max(0LL, i - mid);
-            ll c1 = max(0LL, j - mid);
-            ll r2 = min(n - 1, i + mid);
-            ll c2 = min(m - 1, j + mid);
-            ll n1=(r2-r1+1),m1=(c2-c1+1);
-            ll t=n1*m1 ;
-            ll t2=bb[aa[i][j]];
-            ll ans1=t  - t2;
-            cout<<i<<" "<<j<<" "<<aa[i][j]<<"["<<t<<","<<t2<<"]"<<"["<<n1<<","<<m1<<"]"<<nline;
-            ans+=ans1;
-        }
-        for(ll k=i-mid;k<min(n,i+mid+1);k++)
-        for(ll j=max(0ll,m-(2*mid+1));j<m;j++)bb[aa[k][j]]--;
-    }
-    cout<<ans<<nline;
-    return ans;
 
+ll dp[105][2][2][11];
+ll rec(ll l,ll t1,ll t2,ll mx,string& lo,string& hi){
+    if(l==lo.length()){
+        return 1;
+    }
+    if(dp[l][t1][t2][mx]!=-1){
+        return dp[l][t1][t2][mx];
+    }
+    ll s=(t1?0ll:(lo[l]-'0'));
+    ll e=min((t2?9ll:(hi[l]-'0')),mx-1);
+    ll ans=0;
+    for(ll i=s;i<=e;i++){
+      ll mx1=mx;
+      if(mx==10 && i>0)mx1=i;
+      ans+= rec(l+1,(t1||i>s),(t2||i<e),mx1,lo,hi);
+    }
+    return dp[l][t1][t2][mx]=ans;
+}
+
+ll DP[105][2][11];
+ll call(ll pos, ll f,ll mx,string& st) {
+    if (pos ==st.length()) return 1;
+    if (DP[pos][f][mx] != -1) return DP[pos][f][mx];
+    ll res = 0;
+    ll LMT=min((f?9:(ll)(st[pos]-'0')),mx-1);
+    for (ll dgt = 0; dgt <= LMT; dgt++) {
+        ll mx1=mx;
+        if(mx==10 && dgt>0)mx1=dgt;
+        res+=call(pos + 1, f || dgt<LMT,mx1,st);
+    }
+
+    return DP[pos][f][mx] = res;
 }
 
 
 
- 
+
 void  chal(){
-    ll n,m,k;
-    cin>>n>>m>>k;
-    vvl aa(n,vl(m));
-    fo(i,n)fo(j,m)cin>>aa[i][j];
-    ll s=1,e=max(n,m);
-    ll ans=-1;
-    cout<<nline;
-    while(s<=e){
-        ll mid=s+(e-s)/2;
-        if(dek(mid,aa)>=k){
-            ans=mid;
-            e=mid-1;
-        }else s=mid+1;
-    }
-    cout<<ans<<nline;
+  ll x,y;
+  cin>>x>>y;
+  string s1,s2;
+  s1=to_string(x);
+  s2=to_string(y);
+  x--;
+  string s=to_string(x);
+  while(Sz(s1)<Sz(s2)){
+    s1="0"+s1;
+  }
+  memset(dp,-1,sizeof(dp));
+  // memset(DP,-1,sizeof(DP));
+  // ll fans=call(0,0,10,s2);
+  // memset(DP,-1,sizeof(DP));
+  // fans-=call(0,0,10,s);
+  // cout<<fans<<" ";
+  cout<<rec(0,0,0,10,s1,s2)<<nline;
 
 
 

@@ -8,7 +8,10 @@ using namespace std;
 */
 //---------------------------------------------------------------
 /*  Generic all purpose segtree 
+     T -> node, U->update.
 */
+
+
 
 // struct update
 // {
@@ -26,8 +29,10 @@ using namespace std;
 //   }
 
 // };
+
+
+
 template<class T, class U>
-// T -> node, U->update.
 struct Lsegtree{
     vector<T>st;
     vector<U>lazy;

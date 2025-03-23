@@ -70,56 +70,104 @@ void starter(ll t) {cout << "Case #" << t << ": ";}
 void starter1(ll t) {cerr << "Case #" << t << ": ";}
 void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begin(), vs.end()) - vs.begin());}
 /////////////////////////////////////////////////////////////////////////////////////////////////
-// **Stay Strong,Believe in YOURSELF,Never give UP
+// **Stay calm ,Believe in YOURSELF,Never give UP
+// **Not Everyday is Yours
 
 
+
+bool isprime(ll n){
+    ll i;
+    if(n<=1) return false;
+    if(n==2) return true;
+    if(n%2==0) return false;
+    for(i=3;i*i<=n;i+=2)
+        if(n%i==0) return false;
+    return true;
+}
 
 
 
 
 
 void  chal(){
-  ll n,d;
-  cin>>n>>d;
+  ll n;
+  cin>>n;
   vl aa(n);
-  fo(i,n)cin>>aa[i];
+  for(ll i=1;i<=n;i++){
+    aa[i-1]=i;
+  }
+  for(ll i=0;i+2<n;i+=3){
+    swap(aa[i+2],aa[i+1]);
+    swap(aa[i],aa[i+1]);
+    // vl bb;
+    // bb.pb(aa[i]);
+    // bb.pb(aa[i+1]);
+    // bb.pb(aa[i+2]);
+    // do{
+
+    // }while(next_permutation(All(bb)));
+  }
+  debug(aa);
+  ll sum=0,c=0;
+  fo(i,n){
+    sum+=aa[i];
+    ll val=(sum+i)/(i+1);
+    if(isprime(val))c++;
+    // if(c<((i/3)-1)){
+    //   if(i+1<n){
+    //     sum-=aa[i];
+    //     swap(aa[i],aa[i+1]);
+    //     sum+=aa[i];
+    //     val=(sum+i)/(i+1);
+    //     if(isprime(val))c++;
+    //   }else{
+    //     cout<<"Case"<<" "<<i<<" "<<sum<<" "<<c<<" "<<((i/3)-1)<<nline;
+    //     break;        
+    //   }
+    // }
+    if(c<((i/3)-1)){
+        cout<<"Case"<<" "<<i<<" "<<sum<<" "<<c<<" "<<((i/3)-1)<<nline;
+        break;        
+    }
+  }
+  YES;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
 
  
- 
+
  
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int32_t main() {
