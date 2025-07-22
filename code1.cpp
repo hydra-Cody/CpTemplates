@@ -41,15 +41,15 @@ template <typename T> using prq_mn = priority_queue<T, vector<T>, greater<T>>;
 template <typename T> using o_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 template <typename T, typename R> using o_map = tree<T, R, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 template <typename T> using o_multiset = tree<T,null_type,less_equal<T>,rb_tree_tag,tree_order_statistics_node_update>;
-template<class Fun> class y_combinator_result {
-    Fun fun_;
-public:
-    template<class T> explicit y_combinator_result(T &&fun): fun_(std::forward<T>(fun)) {}
-    template<class ...Args> decltype(auto) operator()(Args &&...args) { return fun_(std::ref(*this), std::forward<Args>(args)...); }
-};
-template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun)); }
+// template<class Fun> class y_combinator_result {
+//     Fun fun_;
+// public:
+//     template<class T> explicit y_combinator_result(T &&fun): fun_(std::forward<T>(fun)) {}
+//     template<class ...Args> decltype(auto) operator()(Args &&...args) { return fun_(std::ref(*this), std::forward<Args>(args)...); }
+// };
+// template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun)); }
 
-//********************************************************************************************************************
+// //********************************************************************************************************************
 #ifdef hydracody
     #include </home/anurag/Desktop/cpc/debug.h>
 #else
@@ -57,17 +57,17 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 #endif
 //------------------------------------------------------------------------------------------------------------
 const double eps=1e-9;const ll INF=(ll)1e9;const ll inf64=2e18;const ll INF64=9e18;
-#define PI 3.1415926535897932384626
+// #define PI 3.1415926535897932384626
 #define MOD 998244353
-#define MOD1 1000000007
-#define MOD2 1000000009
+// #define MOD1 1000000007
+// #define MOD2 1000000009
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
 ll lcm(ll a, ll b){return (a / gcd(a, b)) * b;}
 ll power(ll x,ll y, ll p){if(y==0)return 1;ll res = 1;x = x % p;if (x == 0) return 0;while (y > 0){if (y & 1)res = (res*x) % p;y = y>>1;x = (x*x) % p;}return res;}
 ll pinv(ll a, ll m){ return power(a, m - 2, m); }
- ll logceil(ll x){ll s=0;while(x>0){s++;x=x/2;}return s;}
+ll logceil(ll x){ll s=0;while(x>0){s++;x=x/2;}return s;}
 ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
 ll mod_mul(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a * b) % m) + m) % m;}
 ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
@@ -78,9 +78,9 @@ void starter(ll t) {cout << "Case #" << t << ": ";}
 void starter1(ll t) {cerr << "Case #" << t << ": ";}
 void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begin(), vs.end()) - vs.begin());}
 /////////////////////////////////////////////////////////////////////////////////////////////////
-// **Stay calm ,Believe in YOURSELF,Never give UP
-// **Not Everyday is Yours
-
+/*
+  Make good obervation,
+*/
 
 
 
@@ -91,6 +91,17 @@ void compress(vector<ll>& vs){sort(vs.begin(),vs.end());vs.resize(unique(vs.begi
 
 void  chal(){
   
+
+
+
+
+
+
+  
+
+
+
+
 
 
 
@@ -126,7 +137,7 @@ void  chal(){
 }
 
  
-
+  
  
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int32_t main() {

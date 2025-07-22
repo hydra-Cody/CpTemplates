@@ -91,18 +91,11 @@ return store;
 }
 
 
-
-
-
-
-
-
-
 //---------------------------------------------------------------
 /*
     Pre compute in O(N log N)
 */
-const ll N = 1000000;
+const ll N = 1e6+10;
 vector<vector<ll>> divisors(N+1);
 
 void Divisors2(){
